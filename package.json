@@ -10,7 +10,10 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp serve",
-    "build": "gulp build"
+    "build": "gulp build",
+    "build:theme": "npx @tailwindcss/cli -i ./css/theme/source/baumanno.css -o ./dist/theme/baumanno.css --minify",
+    "watch:theme": "npx @tailwindcss/cli -i ./css/theme/source/baumanno.css -o ./dist/theme/baumanno.css --watch",
+    "dev:all": "concurrently \"npm run watch:theme\" \"gulp serve\""
   },
   "author": {
     "name": "Hakim El Hattab",
@@ -37,8 +40,10 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "@tailwindcss/cli": "^4.1.18",
     "babel-plugin-transform-html-import-to-string": "2.0.0",
     "colors": "^1.4.0",
+    "concurrently": "^9.2.1",
     "core-js": "^3.33.1",
     "fitty": "^2.3.7",
     "glob": "^10.3.10",
@@ -52,10 +57,11 @@
     "highlight.js": "^11.9.0",
     "marked": "^4.3.0",
     "node-qunit-puppeteer": "^2.2.0",
-    "through2": "^4.0.2",
     "qunit": "^2.22.0",
     "rollup": "^4.1.5",
     "sass": "^1.79.4",
+    "tailwindcss": "^4.1.18",
+    "through2": "^4.0.2",
     "yargs": "^17.7.2"
   },
   "overrides": {

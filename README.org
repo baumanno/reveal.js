@@ -1,0 +1,91 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:t ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil expand-links:t f:t
+#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:t title:t toc:nil todo:t |:t
+#+title: README
+#+date: <2026-03-04 Wed>
+#+author: Oliver Baumann
+#+email: oliver.baumann@uni-bayreuth.de
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 30.2 (Org mode 10.0-pre)
+
+This is a fork of [[https://github.com/hakimel/reveal.js][reveal.js]] with my custom theme that integrates [[https://tailwindcss.com/][Tailwind]] v4.
+
+[[https://github.com/hakimel/reveal.js/blob/master/README.md][Original README]]
+
+* Setup
+:PROPERTIES:
+:ID:       e70bf5a3-6a43-4e43-b787-ff538024ffca
+:END:
+** File Structure
+:PROPERTIES:
+:ID:       0bcead02-7661-450e-8b4e-7ba1da0cc3ef
+:END:
+#+begin_example
+.
+├── css/theme/source
+│   └── baumanno.css      # the theme
+├── dist/theme
+│   ├── baumanno.css      # build theme file
+│   └── fonts
+│       ├── martian-mono  # Martian Mono Variable Font
+│       └── urbanist      # Urbanist Variable Font
+├── index.html            # presentation template
+├── package.json          # `build:theme` and `watch:theme` or `dev:all`
+└── tailwind.config.js    # Tailwind v4 config
+#+end_example
+** Installation
+:PROPERTIES:
+:ID:       8e5e8632-9a13-4280-92e3-a4141779f417
+:END:
+#+begin_src bash
+git clone https://github.com/baumanno/reveal.js
+cd reveal.js
+
+# install dependencies
+npm install
+
+# run initial build
+npm run build
+
+# ... or run the dev server
+npm run dev:all
+#+end_src
+* Customisation
+:PROPERTIES:
+:ID:       13906774-0875-49c7-baf8-eaeed7d4360c
+:END:
+** reveal.js theme variables
+:PROPERTIES:
+:ID:       ec0a5c7b-f60f-4859-b413-66b9437e1de9
+:END:
+These go in the ~:root~ selector in ~css/theme/source/baumanno.css~:
+#+begin_src css
+:root {
+    --r-main-color: var(--text-zinc-100);
+}
+#+end_src
+** Tailwind theme variables
+:PROPERTIES:
+:ID:       c56413ff-a06c-4657-890c-02e54b66f831
+:END:
+These go in the ~@theme~ layer in ~css/theme/source/baumanno.css~:
+#+begin_src css
+@theme {
+    --color-foo-100: #fafafa;
+}
+#+end_src
+
+* Licensing
+:PROPERTIES:
+:ID:       05b4e39f-7658-4280-843b-01a647c3f68f
+:CUSTOM_ID: licensing
+:END:
+This theme uses open-source fonts.
+
+[[https://github.com/coreyhu/Urbanist][Urbanist]] is licensed under OFL-1.1: Copyright 2024 The Urbanist Project Authors (https://github.com/coreyhu/Urbanist)
+
+[[https://github.com/evilmartians/mono][Martian Mono]] is licensed under OFL-1.1: Copyright 2021 The Martian Mono Project Authors (https://github.com/evilmartians/mono)
