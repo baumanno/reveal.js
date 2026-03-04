@@ -1,0 +1,5 @@
+@font-face {
+    src: url('./fonts/urbanist/Urbanist[ital,wght].woff2') format('woff2');
+    font-family: 'UrbanistVF';
+    font-weight: 100 900;
+}

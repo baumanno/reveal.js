@@ -1,40 +1,59 @@
+/*
+ The baumanno theme
+
+ This theme is based on "white", and extends it in 
+*/
+
+/*
+ Import the white theme
+
+ I have a strong feeling that most of what white.css defines, we
+ override.  However, white.css is the SASS-compiled artifact, so it
+ includes the necessary reveal.js boilerplate to make things look
+ good.
+
+ This is still better than plain copying, though.
+*/
 @import "../../../dist/theme/white.css";
+
+/* Import fonts */
+@import "../../../dist/theme/fonts/martian-mono/martian-mono.css";
+@import "../../../dist/theme/fonts/urbanist/urbanist.css";
+
+/* Import tailwind */
 @import "tailwindcss";
 
-@font-face {
-    src: url('/fonts/webfonts/Urbanist[ital,wght].woff2') format('woff2');
-    font-family: 'UrbanistVF';
-    font-weight: 100 900;
-}
-
-@font-face {
-    src: url('/fonts/webfonts/MartianMonoVF.woff2') format('woff2');
-    font-family: MartianMonoVF;
-    font-weight: 100 800;
-    font-stretch: 75% 112.5%;
-}
-
+/* Tailwind theming */
 @theme {
+    /* Fonts */
     --font-sans: "UrbanistVF";
     --font-mono: "MartianMonoVF";
 
+    /*
+      Custom color scheme
+      Generated via Harmonizer: https://harmonizer.evilmartians.com/#XZE_U8MwDMW_i1hznPOfZoMyloV24xhEajs-Ujs4Tgdy-e4ogQbHk09P7yc_nUa4ctsro6GKI2j5lbc9VG8jaLxwqCBmDCKojXYWewdVyqhqrLkgVOye7W7VHrtfYYpWNgnYfMPGWcDGmcemAVtu2TJkS4_NAna3zVyEmYvpPYJm4JvFX_mZhqCWLVVJ7o0_KHrWVpwzr3ca7NdgVO8ZksI3PH4P1m-Wyfx5z51TWlKAcc39Ys68JQK7Ggk4K8trR4eadZKFPJknCbdd_lS6nybtQ-5Na-xByYb2hzshxL_6jPZzER8EinrRF-PRoSX3fJbZduywnkd2KUzTDw
+   */
     --color-red-100: oklch(0.82 0.09 25);
     --color-red-200: oklch(0.71 0.14 25);
     --color-red-300: oklch(0.57 0.17 25);
     --color-red-400: oklch(0.39 0.06 25);
+    
     --color-lime-100: oklch(0.8 0.09 150);
     --color-lime-200: oklch(0.68 0.14 150);
     --color-lime-300: oklch(0.53 0.17 150);
     --color-lime-400: oklch(0.37 0.06 150);
+    
     --color-turquoise-100: oklch(0.81 0.09 260);
     --color-turquoise-200: oklch(0.69 0.14 260);
     --color-turquoise-300: oklch(0.56 0.17 260);
     --color-turquoise-400: oklch(0.38 0.06 260);
+    
     --color-azure-100: oklch(0.81 0.09 272);
     --color-azure-200: oklch(0.7 0.14 272);
     --color-azure-300: oklch(0.56 0.17 272);
     --color-azure-400: oklch(0.38 0.06 272);
 
+    /* Typescale, based off the base size of 2.625rem (42px / 16px) */
     --text-xs: 1rem;
     --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 1.75rem;
@@ -63,13 +82,16 @@
     --text-9xl--line-height: 1;
 }
 
+/* reveal.js theme variables, matched up with the Tailwind theme */
 :root {
     --r-background-color: var(--color-zinc-100);
 
+    /* Body copy */
     --r-main-font: var(--font-sans);
     --r-main-font-size: var(--text-base);
     --r-main-color: var(--color-azure-400);
-    
+
+    /* Headings in general */
     --r-heading-font: var(--font-sans);
     --r-heading-font-weight: var(--font-weight-bold);
     --r-heading-line-height: var(--leading-snug);
@@ -83,6 +105,7 @@
     --r-heading3-size: var(--text-xl);
     --r-heading4-size: var(--text-lg);
 
+    /* Useful for when you want to highlight items just by click-dragging over them */
     --r-selection-background-color: var(--color-turquoise-200);
     --r-selection-color: var(--color-zinc-100);
 
@@ -92,6 +115,8 @@
     /* Block spacing */
     --r-block-margin: 20px;
 }
+
+/* Custom styling, applied directly to elements */
 
 img {
     @apply !inline;
