@@ -1,16 +1,10 @@
-#+options: ':nil *:t -:t ::t <:t H:3 \n:t ^:t arch:headline
-#+options: author:t broken-links:nil c:nil creator:nil
-#+options: d:(not "LOGBOOK") date:t e:t email:nil expand-links:t f:t
-#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
-#+options: tasks:t tex:t timestamp:t title:t toc:nil todo:t |:t
 #+title: README
 #+date: <2026-03-04 Wed>
 #+author: Oliver Baumann
 #+email: oliver.baumann@uni-bayreuth.de
 #+language: en
-#+select_tags: export
-#+exclude_tags: noexport
 #+creator: Emacs 30.2 (Org mode 10.0-pre)
+#+OPTIONS: num:nil toc:nil p:t h:4
 
 This is a fork of [[https://github.com/hakimel/reveal.js][reveal.js]] with my custom theme that integrates [[https://tailwindcss.com/][Tailwind]] v4.
 
@@ -20,10 +14,12 @@ This is a fork of [[https://github.com/hakimel/reveal.js][reveal.js]] with my cu
 :PROPERTIES:
 :ID:       e70bf5a3-6a43-4e43-b787-ff538024ffca
 :END:
+
 ** File Structure
 :PROPERTIES:
 :ID:       0bcead02-7661-450e-8b4e-7ba1da0cc3ef
 :END:
+
 #+begin_example
 .
 ├── css/theme/source
@@ -37,10 +33,12 @@ This is a fork of [[https://github.com/hakimel/reveal.js][reveal.js]] with my cu
 ├── package.json          # `build:theme` and `watch:theme` or `dev:all`
 └── tailwind.config.js    # Tailwind v4 config
 #+end_example
+
 ** Installation
 :PROPERTIES:
 :ID:       8e5e8632-9a13-4280-92e3-a4141779f417
 :END:
+
 #+begin_src bash
 git clone https://github.com/baumanno/reveal.js
 cd reveal.js
@@ -49,41 +47,106 @@ cd reveal.js
 npm install
 
 # run initial build
-npm run build
+npm run build:theme && npm run build
 
 # ... or run the dev server
 npm run dev:all
 #+end_src
+
+** Command reference
+:PROPERTIES:
+:ID:       3b6c5417-ad35-4491-8cf1-a0d83f0dd536
+:END:
+
+#+begin_src bash
+# Watch mode, during development; this is glitchy, the livereload
+# doesn't always trigger. Reload manually!
+npm run watch:theme
+
+# Final build, minified
+npm run build:theme
+
+# reveal.js build
+npm run build
+#+end_src
+
 * Customisation
 :PROPERTIES:
 :ID:       13906774-0875-49c7-baf8-eaeed7d4360c
 :END:
+
 ** reveal.js theme variables
 :PROPERTIES:
 :ID:       ec0a5c7b-f60f-4859-b413-66b9437e1de9
 :END:
+
 These go in the ~:root~ selector in ~css/theme/source/baumanno.css~:
+
 #+begin_src css
 :root {
     --r-main-color: var(--text-zinc-100);
 }
 #+end_src
+
 ** Tailwind theme variables
+:PROPERTIES:
+:ID:       9313c7bd-0237-4f5e-b19d-5e193b5767ce
+:END:
+
 :PROPERTIES:
 :ID:       c56413ff-a06c-4657-890c-02e54b66f831
 :END:
+
 These go in the ~@theme~ layer in ~css/theme/source/baumanno.css~:
+
 #+begin_src css
 @theme {
     --color-foo-100: #fafafa;
 }
 #+end_src
 
+* Rebasing onto ~upstream/master~
+:PROPERTIES:
+:ID:       cc636cba-0d46-4017-a5da-0dc58f4b7d75
+:END:
+
+This repo's ~main~ tracks ~upstream/master~. ~baumanno-theme~ contains all
+commits for the custom theme. To sync these with upstream, that branch
+is rebased onto ~upstream/master~.
+
+#+begin_src bash
+# initial setup only: add upstream remote
+git remote add upstream https://github.com/hakimel/reveal.js.git
+
+# update upstream
+git fetch upstream
+
+# switch to feature branch, if not already on it
+git checkout baumanno-theme
+
+# rebase current branch onto upstream/master
+git rebase upstream/master
+
+# force push the feature branch, now on top of upstream/master
+git push origin baumanno-theme --force-with-lease
+#+end_src
+
+* References
+:PROPERTIES:
+:ID:       1164825f-62f8-4117-811d-7458feab44e8
+:END:
+
++ [[https://tailwindcss.com/][Tailwind Docs]]
++ [[https://revealjs.com/][reveal.js Docs]]
++ [[https://www.modularscale.com/][Modular Scale typescales]]
++ [[https://harmonizer.evilmartians.com][Harmonizer color scheme]]
++ [[https://evilmartians.com/chronicles/the-joy-of-variable-fonts-getting-started-on-the-frontend][Evil Martians: Variable Fonts on the Frontend]]
+
 * Licensing
 :PROPERTIES:
 :ID:       05b4e39f-7658-4280-843b-01a647c3f68f
-:CUSTOM_ID: licensing
 :END:
+
 This theme uses open-source fonts.
 
 [[https://github.com/coreyhu/Urbanist][Urbanist]] is licensed under OFL-1.1: Copyright 2024 The Urbanist Project Authors (https://github.com/coreyhu/Urbanist)
